@@ -86,7 +86,9 @@ plt.xlabel("Voltaje (mV)")
 plt.ylabel("Frecuencia (Hz)")
 plt.grid(True)
 plt.show()
-  
+  ## **Histograma**
+<img width="865" height="492" alt="image" src="https://github.com/user-attachments/assets/86673820-4f9e-48cd-ab81-f598e625be68" />
+
   # Función de probabilidad
 # Calcular valores únicos y sus probabilidades
 valores_unicos = list(set(canal[:muestras]))
@@ -111,6 +113,9 @@ plt.title("Función de probabilidad de la señal")
 plt.show()
   ```
 </pre>
+## **Funcion de probabilidad**
+<img width="719" height="564" alt="image" src="https://github.com/user-attachments/assets/af8b9cf6-cd75-418b-8c4e-a01fcc3c4a60" />
+
 
 ## **Resultados de los estadísticos descriptivos de la señal**
 - *Media de la señal:* 0.0016
@@ -119,11 +124,7 @@ plt.show()
 - *Exceso de curtosis (Curtosis de Fisher):* 1.7190
 - *Curtosis (curtosis muestral no centrada en exceso):* 4.7190
 
-## **Histograma**
-<img width="865" height="492" alt="image" src="https://github.com/user-attachments/assets/86673820-4f9e-48cd-ab81-f598e625be68" />
 
-## **Funcion de probabilidad**
-<img width="719" height="564" alt="image" src="https://github.com/user-attachments/assets/af8b9cf6-cd75-418b-8c4e-a01fcc3c4a60" />
 
 ## **Estadísticos descriptivos de la señal con funciones de Python**
 <pre> ```
