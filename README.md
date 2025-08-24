@@ -86,8 +86,6 @@ plt.xlabel("Voltaje (mV)")
 plt.ylabel("Frecuencia (Hz)")
 plt.grid(True)
 plt.show()
-  ## **Histograma**
-<img width="865" height="492" alt="image" src="https://github.com/user-attachments/assets/86673820-4f9e-48cd-ab81-f598e625be68" />
 
   # Función de probabilidad
 # Calcular valores únicos y sus probabilidades
