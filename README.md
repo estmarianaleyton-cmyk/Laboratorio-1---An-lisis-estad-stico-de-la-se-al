@@ -28,7 +28,7 @@ import numpy as np                                                   # Liberia p
 from scipy.stats import kurtosis                                     # Liberia para calcular la curtosis
 from scipy.stats import gaussian_kde                                 # Liberia para calcular la funcion de probabilidad y simulacion de ruido gaussiano
 
-  #s Señal ECG de apnea del sueño
+  # Señal ECG de apnea del sueño
 if not (os.path.exists('a02.hea') and os.path.exists('a02.dat')):    # Verificar que los archivos se encuentren en colab
     print("Archivos no encontrados. Por favor, súbalos ahora:")
     uploaded = files.upload()
@@ -58,9 +58,6 @@ plt.show()                                                            # Muestra 
 </pre> 
 ## **Gráfica de la señal ECG**
 <img width="1235" height="487" alt="image" src="https://github.com/user-attachments/assets/45fa6fe4-4960-402c-86bc-61c09246a18a" />
-
-## **Análisis de la señal**
-
 
 ## **Estadísticos descriptivos de la señal sin funciones de Python**
 <pre> ```
@@ -99,13 +96,11 @@ for v in valores_unicos:
     prob = frecuencia / n
     probabilidades.append((v, prob))
 
-# --- Mostrar resultados ---
-print("\n\033[1mFunción de probabilidad (valores únicos y su probabilidad):\033[0m")
+print("\n\033[1mFunción de probabilidad (valores únicos y su probabilidad):\033[0m")      # Imprimir los resultados
 for v, p in probabilidades:
     print(f"Valor: {v:.4f}  ->  Prob: {p:.4f}")
 
-# --- Graficar ---
-valores = [v for v, _ in probabilidades]
+valores = [v for v, _ in probabilidades]                                                  # Gráficar
 probs = [p for _, p in probabilidades]
 
 plt.bar(valores, probs, width=0.01)  # ajusta width según los valores de tu señal
@@ -145,7 +140,7 @@ print(f"\033[3mEl coeficiente de variacion es: {coevariacion:.4f} \033[0m")
 print(f"\033[3mExceso de curtosis en la señal es de: {curtosis_F:.4f} (curtosis de Fisher)\033[0m")
 print(f"\033[3mLa curtosis (sin exceso) de la señal es de: {curtosis:.4f} (curtosis muestral no centrada en exceso)\033[0m")
 
-  #Histograma 
+  # Histograma 
 plt.figure(figsize=(8, 4))
 plt.hist(canal[:muestras], bins=30, color="skyblue",edgecolor="black", density=False)
 plt.title("Histograma del ECG (15 s)")
@@ -191,7 +186,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 uploaded = files.upload()                        # Subir los archivos a colab
 df = pd.read_csv("laboratorio_datos.csv")        # Se guarda en un DataFrame de Pandas
-  #Gráfica
+  # Gráfica
 tiempo = df.iloc[:,0].values                     # Se toma la primera columna y se guarda como vector tiempo
 canal2 = df.iloc[:,0].values                     # Se toman los datos de la segunda columna y se guarda como vector canal2
 plt.figure(figsize=(10, 4))
@@ -206,6 +201,108 @@ plt.show()
 
 ## **Gráfica de la señal fisiológica medida en el laboratorio**
 <img width="1054" height="486" alt="image" src="https://github.com/user-attachments/assets/ff285bc5-f41a-4ae8-bfea-9e0c4270b760" />
+
+## **Estadísticos descriptivos de la señal fisiológica sin funciones de Python**
+<pre> ```
+print("\033[1mEstadisticos descriptivos sin funciones de python:\033[0m")
+n = len(canal2)     
+media = sum(canal2) / n
+suma_cuadrados = sum((x - media) **2 for x in canal2)
+desviacion = (suma_cuadrados / n) ** 0.5
+coevariacion = (desviacion / media) * 100
+n = len(canal2)
+curtosis = np.sum(((canal2-media)/desviacion)**4)/n
+curtosis_F = np.sum(((canal2-media)/desviacion)**4)/n -3
+print(f"\033[3mLa media de la señal es: {media:.4f} \033[0m")
+print(f"\033[3mLa desviacion estandar de la señal es: {desviacion:.4f} \033[0m")
+print(f"\033[3mEl coeficiente de variacion es: {coevariacion:.4f} \033[0m")
+print(f"\033[3mExceso de curtosis en la señal es de: {curtosis_F:.4f} (curtosis de Fisher)\033[0m")
+print(f"\033[3mLa curtosis de la señal es de: {curtosis:.4f} (curtosis muestral no centrada en exceso)\033[0m")
+
+  # Histograma
+señal = df["data"]
+plt.figure(figsize=(8, 4))
+plt.hist(señal, bins=30, color="skyblue",edgecolor="black", density=False)
+plt.title("Histograma de la señal fisiogica tomada en el laboratorio")
+plt.xlabel("Voltaje (mV)")
+plt.ylabel("Frecuencia (Hz)")
+plt.grid(True)
+plt.show()
+
+  # Función de probabilidad
+  
+
+  ```
+</pre>
+
+## **Resultados de los estadísticos descriptivos de la señal**
+- *Media de la señal:* 0.2827
+- *Desviacion estandar de la señal:* 0.1621
+- *Coeficiente de variación:* 57.3493
+- *Exceso de curtosis (Curtosis de Fisher):* 3.9548
+- *Curtosis (curtosis muestral no centrada en exceso):* 6.9548
+
+## **Histograma**
+<img width="856" height="493" alt="image" src="https://github.com/user-attachments/assets/dc3a4a28-41ae-4c5e-b370-d10646a496d1" />
+
+## **Funcion de probabilidad**
+
+
+## **Estadísticos descriptivos de la señal fisiológica con funciones de Python**
+<pre> ```
+print("\033[1mEstadisticos descriptivos con funciones de python:\033[0m")
+media = np.mean(canal2)
+desviacion = np.std(canal2)
+coevariacion = (desviacion / media) * 100
+curtosis = kurtosis(canal2)
+curtosi_F = kurtosis(canal2, fisher=False)
+print(f"\033[3mLa media de la señal es: {media:.4f} \033[0m")
+print(f"\033[3mLa desviacion estandar de la señal es: {desviacion:.4f} \033[0m")
+print(f"\033[3mEl coeficiente de variacion es: {coevariacion:.4f} \033[0m")
+print(f"\033[3mExceso de curtosis en la señal es de: {curtosis:.4f} (curtosis de Fisher)\033[0m")
+print(f"\033[3mLa curtosis (sin exceso) de la señal es de: {curtosi_F:.4f} (curtosis muestral no centrada en exceso)\033[0m")
+
+  # Histograma
+señal = df["data"]
+plt.figure(figsize=(8, 4))
+plt.hist(senal, bins=30, color="green",edgecolor="black", density=False)
+plt.title("Histograma de la señal fisiogica tomada en el laboratorio")
+plt.xlabel("Voltaje (mV)")
+plt.ylabel("Frecuencia (Hz)")
+plt.grid(True)
+plt.show()
+
+  # Función de probabilidad
+data = np.ravel(canal[:muestras])                        
+kde = gaussian_kde(data)                                 
+x_vals = np.linspace(min(data), max(data), 1000)        
+
+plt.plot(x_vals, kde(x_vals))                            
+plt.xlabel("Amplitud")
+plt.ylabel("Densidad de probabilidad")
+plt.title("Función de probabilidad del ECG (15 s)")
+plt.show()
+  ```
+</pre>
+
+## **Resultados de los estadísticos descriptivos de la señal**
+- *Media de la señal:* 0.2827
+- *Desviacion estandar de la señal:* 0.1621
+- *Coeficiente de variación:* 57.3493
+- *Exceso de curtosis (Curtosis de Fisher):* 3.9548
+- *Curtosis (curtosis muestral no centrada en exceso):* 6.9548
+
+## **Histograma**
+<img width="860" height="490" alt="image" src="https://github.com/user-attachments/assets/fd836d2a-ea5d-45a1-a0a5-1e11c38eb90f" />
+
+## **Funcion de probabilidad**
+<img width="764" height="563" alt="image" src="https://github.com/user-attachments/assets/5a13e3ca-a9b0-4290-a4e3-cbad29548e5d" />
+
+## **Análisis de los resultados de la parte B**
+
+# **Parte C**
+## **Relación señal ruido (SNR)**
+
 
 
 
