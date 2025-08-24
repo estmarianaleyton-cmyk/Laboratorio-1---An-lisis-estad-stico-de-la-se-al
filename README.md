@@ -155,12 +155,11 @@ plt.grid(True)
 plt.show()
 
   # Función de probabilidad
-data = np.ravel(canal[:muestras])
-kde = gaussian_kde(data)
-# Rango de valores para evaluar la KDE
-x_vals = np.linspace(min(data), max(data), 1000)
+data = np.ravel(canal[:muestras])                        # Convertir el segmento de señal en un vector 1D ya que gaussian_kde tarabaja con datos 1D 
+kde = gaussian_kde(data)                                 # Estimacion de la función de densidad de probabilidad
+x_vals = np.linspace(min(data), max(data), 1000)         # Rango de valores, desde minimo hasta el maximo
 
-plt.plot(x_vals, kde(x_vals))
+plt.plot(x_vals, kde(x_vals))                            # Grafica la curva de densidad de probabilidad
 plt.xlabel("Amplitud")
 plt.ylabel("Densidad de probabilidad")
 plt.title("Función de probabilidad del ECG (15 s)")
@@ -190,9 +189,23 @@ plt.show()
 from google.colab import files
 import pandas as pd
 import matplotlib.pyplot as plt
-uploaded = files.upload()
-df = pd.read_csv("laboratorio_datos.csv")
-  
-
-
+uploaded = files.upload()                        # Subir los archivos a colab
+df = pd.read_csv("laboratorio_datos.csv")        # Se guarda en un DataFrame de Pandas
+  #Gráfica
+tiempo = df.iloc[:,0].values                     # Se toma la primera columna y se guarda como vector tiempo
+canal2 = df.iloc[:,0].values                     # Se toman los datos de la segunda columna y se guarda como vector canal2
+plt.figure(figsize=(10, 4))
+plt.plot(df["timeStamps"], df["data"], label = "ECG")
+plt.xlabel("Tiempo (s)")
+plt.ylabel("Voltaje (mV)")
+plt.title("Señal fisiologica tomada en el laboratorio")
+plt.grid(True)
+plt.show()
+```
 </pre>
+
+## **Gráfica de la señal fisiológica medida en el laboratorio**
+<img width="1054" height="486" alt="image" src="https://github.com/user-attachments/assets/ff285bc5-f41a-4ae8-bfea-9e0c4270b760" />
+
+
+
