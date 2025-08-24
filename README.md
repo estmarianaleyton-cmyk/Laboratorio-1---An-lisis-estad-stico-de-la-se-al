@@ -254,7 +254,7 @@ plt.xlabel("Valores de la señal (mV)")
 plt.ylabel("Probabilidad")
 plt.title("Función de probabilidad discreta de la señal fisiológica")
 plt.grid(True)
-plt.sho<img width="863" height="394" alt="download" src="https://github.com/user-attachments/assets/70112ae7-aef3-4584-9f14-750f5bcdd663" />
+
 w()
 
   ```
@@ -271,6 +271,7 @@ w()
 <img width="856" height="493" alt="image" src="https://github.com/user-attachments/assets/dc3a4a28-41ae-4c5e-b370-d10646a496d1" />
 
 ## **Funcion de probabilidad**
+plt.sho<img width="863" height="394" alt="download" src="https://github.com/user-attachments/assets/70112ae7-aef3-4584-9f14-750f5bcdd663" />
 
 
 ## **Estadísticos descriptivos de la señal fisiológica con funciones de Python**
@@ -324,7 +325,8 @@ plt.show()
 <img width="764" height="563" alt="image" src="https://github.com/user-attachments/assets/5a13e3ca-a9b0-4290-a4e3-cbad29548e5d" />
 
 ## **Análisis de los resultados de la parte B**
-
+La señal adquirida mediante el DAQ se observaron cambios notorios, frente a la de PhysioNet. Ya que se adquirio directamente desde el osiloscopio, desde el cual se exporto a una memoria USB  para luego  procesarla en Pthon, al revisar los datos descargados se observo que se mostraba demasiado comprimida, lo que dificultaba su visualizacion y sus caracteristicas estadisticas, por eso fue necesario aplicar un factor de escala  (0.2x10^6=200.000), a partir de ese valor se normalizo su amplitud para asi obtener los datos. La medida de la señal tambien se mantuvo cercana a cero, lo que indica una buena adquisicion. La desviacion estandar resulto ser un poco mayor, reflejando mayor dispersion y variabilidad en los datos. 
+Los resultados obtenidsos muestran que la señal adquirirda comparten caracteristicas de estaditicas similares a la de la señal de referencia.
 # **Parte C**
 ## **Relación señal ruido (SNR)** Relaciona la señal de potencia del ruido deseado con la pontecia del ruido
 **a. Contaminar la señal con ruido gaussiano y medir el SNR**
