@@ -11,8 +11,9 @@
 
 # **Objetivos**
 - Identificar los estadísticos que describen una señal biomédica.
-- Obtenerlos a partir de algoritmos de programación y mostrarlos
-- ddddd
+- Aplicar algoritmos de progamación en Python para importar, graficar y calcular los estadísticos descriptivos de señales fisiológicas, tanto mediante funciones programadas manualmente como con funciones predefinidas.
+- Analizar la relacion señal ruido (SNR) mediante la contaminacion de las señales con diferentes tipos de ruido (gaussiano, impulso y artefacto) y evaluar su impacto en el análisis estadístico.
+
 # **Procedimiento, método o actividades**
 Se descargo una señal electrocardiografica de la base de datos de PhysioNet, esta se importo a Google colab para poder graficarla y posteriormente calcular cada uno de sus estadisticos descrptivos.
 # **Parte A**
