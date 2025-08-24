@@ -15,7 +15,7 @@
 - Analizar la relacion señal ruido (SNR) mediante la contaminacion de las señales con diferentes tipos de ruido (gaussiano, impulso y artefacto) y evaluar su impacto en el análisis estadístico.
 
 # **Procedimiento, método o actividades**
-Se descargo una señal electrocardiografica de la base de datos de PhysioNet, esta se importo a Google colab para poder graficarla y posteriormente calcular cada uno de sus estadisticos descrptivos.
+Este consistio en tres etapas principales, en la parte A se descargo la señal electrocardiografica de la base de datos de PhysioNet, esta se importo a Google colab para poder graficarla y posteriormente calcular cada uno de sus estadisticos descrptivos.En la parte B se genero la señal fisiologica la cual se adquirio mediante un DAQ, se almaceno y posteriormente se proceso en python para de esta manera calcular sus datos estadisticos, y compararlos asi con la parte A. Finalmente en la parte C la señal adquirida fue contaminada con distintos tipos de ruido(Gaussianon inpulso y artefacto) calculando su relacion .
 # **Parte A**
 ## **Código en Python (Google colab)**
 <pre> ```
