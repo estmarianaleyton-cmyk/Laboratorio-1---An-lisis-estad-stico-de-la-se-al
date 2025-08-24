@@ -302,8 +302,99 @@ plt.show()
 ## **Análisis de los resultados de la parte B**
 
 # **Parte C**
-## **Relación señal ruido (SNR)**
+## **Relación señal ruido (SNR)** Relaciona la señal de potencia del ruido deseado con la pontecia del ruido
+**a. Contaminar la señal con ruido gaussiano y medir el SNR**
+ ```
+</pre>
+import numpy as np
+import matplotlib.pyplot as plt
 
+def calcular_snr(signal, noisy_signal):
+    potencia_signal = np.mean(signal**2)
+    potencia_ruido = np.mean((noisy_signal - signal)**2)
+    return 10 * np.log10(potencia_signal / potencia_ruido)
+
+senal = df["data"].values
+tiempo = df["timeStamps"].values
+
+ruido_gauss = np.random.normal(0, 0.2, len(senal))  # media=0, sigma=0.2
+senal_gauss = senal + ruido_gauss
+snr_gauss = calcular_snr(senal, senal_gauss)
+print(f"(a) SNR con ruido gaussiano: {snr_gauss:.2f} dB")
+
+plt.figure(figsize=(12,4))
+plt.plot(tiempo, senal, label="Señal original", alpha=0.7)
+plt.plot(tiempo, senal_gauss, label="Señal con ruido gaussiano", alpha=0.7)
+plt.xlabel("Tiempo (s)")
+plt.ylabel("Voltaje (mV)")
+plt.title("Señal con ruido gaussiano")
+plt.legend()
+plt.grid(True)
+plt.show()
+ ```
+</pre>
+
+<img width="1035" height="422" alt="image" src="https://github.com/user-attachments/assets/ed2eaadb-1b95-4a23-a425-25231ecdfb07" />
+-En la grafica podemos apreciar que la señal ruidosa (la naranja) sigue de cerca a la original (la azul), el ruido gaussiano afecta en todo momento y por todo el rango, puesto que genera pequeñas variaciones continuas, el SNR es bastnate bajo lo que significa que la potencia de ruido es cercana a la señal, por eso se nota la distorsión.
+
+ ```
+</pre>
+senal = df["data"].values
+tiempo = df["timeStamps"].values
+
+senal_impulso = senal.copy()
+num_impulsos = int(0.01 * len(senal))  # 1% de los puntos alterados
+posiciones = np.random.randint(0, len(senal), num_impulsos)
+senal_impulso[posiciones] = senal_impulso[posiciones] + np.random.choice([3, -3], size=num_impulsos)
+
+snr_impulso = calcular_snr(senal, senal_impulso)
+print(f"(b) SNR con ruido impulso: {snr_impulso:.2f} dB")
+
+plt.figure(figsize=(12,4))
+plt.plot(tiempo, senal, label="Señal original", alpha=0.7)
+plt.plot(tiempo, senal_impulso, label="Señal con ruido impulso", alpha=0.7)
+plt.xlabel("Tiempo (s)")
+plt.ylabel("Voltaje (mV)")
+plt.title("Señal con ruido impulso")
+plt.legend()
+plt.grid(True)
+plt.show()
+ ```
+</pre>
+
+**b. Contaminar la señal con ruido impulso y medir el SNR**
+<img width="1027" height="425" alt="image" src="https://github.com/user-attachments/assets/886522b3-eee3-42c3-a4b8-a826c9f93653" />
+-El ruido de impulso (el naranja) es bastante parecido al original excepto por una parte que donde aparece un pico muy grande hacia abajo, sin embargo, esto es típico de este tipo de ruido. El SNR es extremadamente bajo, de 0.7dB, significa que esos impulsos tienen tanta energía que la potencia del ruido supera o iguala la de la señal.
+
+senal = df["data"].values
+tiempo = df["timeStamps"].values
+fs = 500  # Frecuencia de muestreo aprox., cámbiala según tu archivo
+t = np.arange(len(senal)) / fs
+
+ ```
+</pre>
+artefacto_baja = 0.5 * np.sin(2 * np.pi * 0.5 * t)
+artefacto_alta = 0.2 * np.sin(2 * np.pi * 60 * t)
+senal_artefacto = senal + artefacto_baja + artefacto_alta
+
+snr_artefacto = calcular_snr(senal, senal_artefacto)
+print(f"(c) SNR con ruido tipo artefacto: {snr_artefacto:.2f} dB")
+
+plt.figure(figsize=(12,4))
+plt.plot(tiempo, senal, label="Señal original", alpha=0.7)
+plt.plot(tiempo, senal_artefacto, label="Señal con artefacto", alpha=0.7)
+plt.xlabel("Tiempo (s)")
+plt.ylabel("Voltaje (mV)")
+plt.title("Señal con ruido tipo artefacto")
+plt.legend()
+plt.grid(True)
+plt.show()
+ ```
+</pre>
+
+**c. Contaminar la señal con ruido tipo artefacto y medir el SNR**
+<img width="1010" height="418" alt="image" src="https://github.com/user-attachments/assets/73e40d9f-9e6c-49f4-9b49-df3c436992a6" />
+-La señal con el ruido tiene ondulaciones y picos que no corresponden a la señal original, aqui se mezclan interferencias sistematicas como una onda extra y el SNR es de 3.4dB lo cual es todavía bajo, indicando que los artefactos introducen una gran distorsión perceptible.
 
 
 
