@@ -13,10 +13,10 @@
 - Identificar los estadísticos que describen una señal biomédica.
 - Obtenerlos a partir de algoritmos de programación y mostrarlos
 - ddddd
-# Procedimiento, método o actividades
+# **Procedimiento, método o actividades**
 Se descargo una señal electrocardiografica de la base de datos de PhysioNet, esta se importo a Google colab para poder graficarla y posteriormente calcular cada uno de sus estadisticos descrptivos.
-# Parte A
-## Código en Python (Google colab)
+# **Parte A**
+## **Código en Python (Google colab)**
 <pre> ```
   # Importación de las librerias a utilizar
 !pip install wfdb                                                    # Instalación de la liberia wfdb
@@ -62,7 +62,7 @@ plt.show()                                                            # Muestra 
 ## **Análisis de la señal**
 
 
-## **Estadísticos descriptivos de la señal sin funciones de python**
+## **Estadísticos descriptivos de la señal sin funciones de Python**
 <pre> ```
 print("\033[1mEstadisticos descriptivos sin funciones de python:\033[0m")
 n = len(canal[:muestras])                                                 # Calcula el numero total de muestras de la señal
@@ -129,4 +129,70 @@ plt.show()
 ## **Funcion de probabilidad**
 <img width="719" height="564" alt="image" src="https://github.com/user-attachments/assets/af8b9cf6-cd75-418b-8c4e-a01fcc3c4a60" />
 
+## **Estadísticos descriptivos de la señal con funciones de Python**
+<pre> ```
+print("\033[1mEstadisticos descriptivos con funciones de python:\033[0m")
+media = np.mean(canal[:muestras])
+desviacion = np.std(canal[:muestras])
+coevariacion = (desviacion / media) * 100
+curtosis = kurtosis(canal[:muestras])
+curtosis = kurtosis(canal[:muestras], fisher=False)
+curtosis_F= kurtosis(canal[:muestras])
+curtosis_F = kurtosis(canal[:muestras], fisher=True)
+print(f"\033[3mLa media de la señal es: {media:.4f} \033[0m")
+print(f"\033[3mLa desviacion estandar de la señal es: {desviacion:.4f} \033[0m")
+print(f"\033[3mEl coeficiente de variacion es: {coevariacion:.4f} \033[0m")
+print(f"\033[3mExceso de curtosis en la señal es de: {curtosis_F:.4f} (curtosis de Fisher)\033[0m")
+print(f"\033[3mLa curtosis (sin exceso) de la señal es de: {curtosis:.4f} (curtosis muestral no centrada en exceso)\033[0m")
 
+  #Histograma 
+plt.figure(figsize=(8, 4))
+plt.hist(canal[:muestras], bins=30, color="skyblue",edgecolor="black", density=False)
+plt.title("Histograma del ECG (15 s)")
+plt.xlabel("Voltaje (mV)")
+plt.ylabel("Frecuencia (Hz)")
+plt.grid(True)
+plt.show()
+
+  # Función de probabilidad
+data = np.ravel(canal[:muestras])
+kde = gaussian_kde(data)
+# Rango de valores para evaluar la KDE
+x_vals = np.linspace(min(data), max(data), 1000)
+
+plt.plot(x_vals, kde(x_vals))
+plt.xlabel("Amplitud")
+plt.ylabel("Densidad de probabilidad")
+plt.title("Función de probabilidad del ECG (15 s)")
+plt.show()
+  ```
+</pre>
+
+## **Resultados de los estadísticos descriptivos de la señal**
+- *Media de la señal:* 0.0016
+- *Desviacion estandar de la señal:* 0.1390
+- *Coeficiente de variación:* 8778.00332
+- *Exceso de curtosis (Curtosis de Fisher):* 1.7190
+- *Curtosis (curtosis muestral no centrada en exceso):* 4.7190
+
+## **Histograma**
+<img width="869" height="491" alt="image" src="https://github.com/user-attachments/assets/49656386-2cdd-4638-bbbc-66a823615e61" />
+
+## **Funcion de probabilidad**
+<img width="690" height="568" alt="image" src="https://github.com/user-attachments/assets/3b2103a2-68f5-4d55-9463-49f2aec8b406" />
+
+## **Análisis de los resultados de la parte A**
+
+# **Parte B**
+
+## **Código en Python (Google colab)**
+<pre> ```
+from google.colab import files
+import pandas as pd
+import matplotlib.pyplot as plt
+uploaded = files.upload()
+df = pd.read_csv("laboratorio_datos.csv")
+  
+
+
+</pre>
