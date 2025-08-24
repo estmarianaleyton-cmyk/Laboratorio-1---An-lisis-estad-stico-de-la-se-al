@@ -179,7 +179,7 @@ plt.show()
 <img width="690" height="568" alt="image" src="https://github.com/user-attachments/assets/3b2103a2-68f5-4d55-9463-49f2aec8b406" />
 
 ## **Análisis de los resultados de la parte A**
-
+El análisis de la señal ECG de 15 segundos descargada de PhysioNet permitió caracterizar su comportamiento mediante la media (0.0016 mV) cercana a cero indica que la señal está  centrada en la línea base, mientras que la desviación estándar (0.1390 mV) refleja que la mayor parte de las muestras se concentran en torno al valor central, con variaciones propias del ECG. El coeficiente de variación, resulta elevado (≈8778 %), pierde relevancia práctica debido a que la media es muy baja y el cociente se ve amplificado. En cuanto a la curtosis, los valores obtenidos (4.7190 sin exceso y 1.7190 con exceso de Fisher)  que significa que predominan eventos transitorios de alta amplitud. Estos hallazgos se respaldan en el histograma y en la función de probabilidad, que evidencian una fuerte concentración de amplitudes alrededor de cero y menor frecuencia en valores extremos. En conjunto, los resultados confirman que la señal ECG es estable, con dispersión controlada.
 # **Parte B**
 
 ## **Código en Python (Google colab)**
