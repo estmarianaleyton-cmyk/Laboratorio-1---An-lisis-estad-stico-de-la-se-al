@@ -7,15 +7,17 @@
 
 **Fecha:** 22 de agosto de 2025
 
-**Titulo de la practica:** Estadística de la señal
+**Título de la practica:** Estadística de la señal
 
 # **Objetivos**
 - Identificar los estadísticos que describen una señal biomédica.
 - Aplicar algoritmos de progamación en Python para importar, graficar y calcular los estadísticos descriptivos de señales fisiológicas, tanto mediante funciones programadas manualmente como con funciones predefinidas.
-- Analizar la relacion señal ruido (SNR) mediante la contaminacion de las señales con diferentes tipos de ruido (gaussiano, impulso y artefacto) y evaluar su impacto en el análisis estadístico.
+- Capturar señales fisiológicas con un DAQ o STM32.
+- Analizar la relacion señal ruido (SNR) mediante la contaminación de las señales con diferentes tipos de ruido (gaussiano, impulso y artefacto) y evaluar su impacto en el análisis estadístico.
 
 # **Procedimiento, método o actividades**
-Este consistio en tres etapas principales, en la parte A se descargo la señal electrocardiografica de la base de datos de PhysioNet, esta se importo a Google colab para poder graficarla y posteriormente calcular cada uno de sus estadisticos descrptivos.En la parte B se genero la señal fisiologica la cual se adquirio mediante un DAQ, se almaceno y posteriormente se proceso en python para de esta manera calcular sus datos estadisticos, y compararlos asi con la parte A. Finalmente en la parte C la señal adquirida fue contaminada con distintos tipos de ruido(Gaussianon inpulso y artefacto) calculando su relacion .
+Este consistió en tres etapas principales, en la parte A se descargó la señal electrocardiográfica de la base de datos de [PhysioNet](https://physionet.org/), la cual se importó a Google colab para poder graficarla y posteriormente calcular cada uno de sus estadísticos descriptivos tanto de forma manual como con las funciones que contaba la librería de Numpy. En la parte B se generó una señal fisiológica del mismo tipo de la usada en la parte A utilizando un generador de señales biológicas, esta se capturo mediante un DAQ, se almaceno y posteriormente se procesó en Google colab para calcular sus estadísticos descriptivos, y compararlos con la parte A. Finalmente en la parte C, se investigó la relación señal ruido (SNR) y se contamino la señal capturada en la parte B con distintos tipos de ruido, como el Gaussiano, el de impulso y de artefacto para medir la relación señal ruido (SNR).
+
 # **Parte A**
 ## **Código en Python (Google colab)**
 <pre> ```
@@ -88,8 +90,7 @@ plt.grid(True)
 plt.show()
 
   # Función de probabilidad
-# Calcular valores únicos y sus probabilidades
-valores_unicos = list(set(canal[:muestras]))
+valores_unicos = list(set(canal[:muestras]))                                             # Calcular valores únicos y sus probabilidades
 probabilidades = []
 
 for v in valores_unicos:
@@ -101,7 +102,7 @@ print("\n\033[1mFunción de probabilidad (valores únicos y su probabilidad):\03
 for v, p in probabilidades:
     print(f"Valor: {v:.4f}  ->  Prob: {p:.4f}")
 
-valores = [v for v, _ in probabilidades]                                                  # Gráficar
+valores = [v for v, _ in probabilidades]                                                  # Gráficar función de probabilidad
 probs = [p for _, p in probabilidades]
 
 plt.bar(valores, probs, width=0.01)  # ajusta width según los valores de tu señal
@@ -111,6 +112,9 @@ plt.title("Función de probabilidad de la señal")
 plt.show()
   ```
 </pre>
+## **Histograma**
+
+
 ## **Funcion de probabilidad**
 <img width="719" height="564" alt="image" src="https://github.com/user-attachments/assets/af8b9cf6-cd75-418b-8c4e-a01fcc3c4a60" />
 
@@ -148,9 +152,6 @@ plt.xlabel("Voltaje (mV)")
 plt.ylabel("Frecuencia (Hz)")
 plt.grid(True)
 plt.show()
-  ## **Histograma**
-<img width="869" height="491" alt="image" src="https://github.com/user-attachments/assets/49656386-2cdd-4638-bbbc-66a823615e61" />
-
 
   # Función de probabilidad
 data = np.ravel(canal[:muestras])                        # Convertir el segmento de señal en un vector 1D ya que gaussian_kde tarabaja con datos 1D 
@@ -180,6 +181,7 @@ plt.show()
 
 ## **Análisis de los resultados de la parte A**
 El análisis de la señal ECG de 15 segundos descargada de PhysioNet permitió caracterizar su comportamiento mediante la media (0.0016 mV) cercana a cero indica que la señal está  centrada en la línea base, mientras que la desviación estándar (0.1390 mV) refleja que la mayor parte de las muestras se concentran en torno al valor central, con variaciones propias del ECG. El coeficiente de variación, resulta elevado (≈8778 %), pierde relevancia práctica debido a que la media es muy baja y el cociente se ve amplificado. En cuanto a la curtosis, los valores obtenidos (4.7190 sin exceso y 1.7190 con exceso de Fisher)  que significa que predominan eventos transitorios de alta amplitud. Estos hallazgos se respaldan en el histograma y en la función de probabilidad, que evidencian una fuerte concentración de amplitudes alrededor de cero y menor frecuencia en valores extremos. En conjunto, los resultados confirman que la señal ECG es estable, con dispersión controlada.
+
 # **Parte B**
 
 ## **Código en Python (Google colab)**
@@ -232,7 +234,6 @@ plt.ylabel("Frecuencia (Hz)")
 plt.grid(True)
 plt.show()
 
-  # Función de probabilidad
   # Función de probabilidad discreta
 senal = df["data"]
 n = len(senal)
@@ -240,12 +241,12 @@ valores_unicos = list(set(senal))
 probabilidades = []
 
 for v in valores_unicos:
-    frecuencia = sum(1 for x in senal if x == v)
-    prob = frecuencia / n
-    probabilidades.append((v, prob))
+frecuencia = sum(1 for x in senal if x == v)
+prob = frecuencia / n
+probabilidades.append((v, prob))
 
-# Graficar función de probabilidad
-valores = [v for v, _ in probabilidades]
+  
+valores = [v for v, _ in probabilidades]                    
 probs = [p for _, p in probabilidades]
 
 plt.figure(figsize=(10,4))
@@ -254,9 +255,6 @@ plt.xlabel("Valores de la señal (mV)")
 plt.ylabel("Probabilidad")
 plt.title("Función de probabilidad discreta de la señal fisiológica")
 plt.grid(True)
-
-w()
-
   ```
 </pre>
 
@@ -271,7 +269,7 @@ w()
 <img width="856" height="493" alt="image" src="https://github.com/user-attachments/assets/dc3a4a28-41ae-4c5e-b370-d10646a496d1" />
 
 ## **Funcion de probabilidad**
-plt.sho<img width="863" height="394" alt="download" src="https://github.com/user-attachments/assets/70112ae7-aef3-4584-9f14-750f5bcdd663" />
+<img width="863" height="394" alt="download" src="https://github.com/user-attachments/assets/70112ae7-aef3-4584-9f14-750f5bcdd663" />
 
 
 ## **Estadísticos descriptivos de la señal fisiológica con funciones de Python**
@@ -327,6 +325,7 @@ plt.show()
 ## **Análisis de los resultados de la parte B**
 La señal adquirida mediante el DAQ se observaron cambios notorios, frente a la de PhysioNet. Ya que se adquirio directamente desde el osiloscopio, desde el cual se exporto a una memoria USB  para luego  procesarla en Pthon, al revisar los datos descargados se observo que se mostraba demasiado comprimida, lo que dificultaba su visualizacion y sus caracteristicas estadisticas, por eso fue necesario aplicar un factor de escala  (0.2x10^6=200.000), a partir de ese valor se normalizo su amplitud para asi obtener los datos. La medida de la señal tambien se mantuvo cercana a cero, lo que indica una buena adquisicion. La desviacion estandar resulto ser un poco mayor, reflejando mayor dispersion y variabilidad en los datos. 
 Los resultados obtenidsos muestran que la señal adquirirda comparten caracteristicas de estaditicas similares a la de la señal de referencia.
+
 # **Parte C**
 ## **Relación señal ruido (SNR)** Relaciona la señal de potencia del ruido deseado con la pontecia del ruido
 **a. Contaminar la señal con ruido gaussiano y medir el SNR**
