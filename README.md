@@ -149,6 +149,9 @@ plt.xlabel("Voltaje (mV)")
 plt.ylabel("Frecuencia (Hz)")
 plt.grid(True)
 plt.show()
+  ## **Histograma**
+<img width="869" height="491" alt="image" src="https://github.com/user-attachments/assets/49656386-2cdd-4638-bbbc-66a823615e61" />
+
 
   # Función de probabilidad
 data = np.ravel(canal[:muestras])                        # Convertir el segmento de señal en un vector 1D ya que gaussian_kde tarabaja con datos 1D 
