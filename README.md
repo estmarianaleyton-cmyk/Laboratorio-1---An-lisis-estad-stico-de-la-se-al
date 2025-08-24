@@ -233,7 +233,28 @@ plt.grid(True)
 plt.show()
 
   # Función de probabilidad
-  
+  # Función de probabilidad discreta
+senal = df["data"]
+n = len(senal)
+valores_unicos = list(set(senal))
+probabilidades = []
+
+for v in valores_unicos:
+    frecuencia = sum(1 for x in senal if x == v)
+    prob = frecuencia / n
+    probabilidades.append((v, prob))
+
+# Graficar función de probabilidad
+valores = [v for v, _ in probabilidades]
+probs = [p for _, p in probabilidades]
+
+plt.figure(figsize=(10,4))
+plt.bar(valores, probs, width=0.002, color="orange", edgecolor="black")
+plt.xlabel("Valores de la señal (mV)")
+plt.ylabel("Probabilidad")
+plt.title("Función de probabilidad discreta de la señal fisiológica")
+plt.grid(True)
+plt.show()
 
   ```
 </pre>
