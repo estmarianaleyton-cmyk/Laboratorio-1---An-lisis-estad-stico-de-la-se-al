@@ -254,7 +254,8 @@ plt.xlabel("Valores de la señal (mV)")
 plt.ylabel("Probabilidad")
 plt.title("Función de probabilidad discreta de la señal fisiológica")
 plt.grid(True)
-plt.show()
+plt.sho<img width="863" height="394" alt="download" src="https://github.com/user-attachments/assets/70112ae7-aef3-4584-9f14-750f5bcdd663" />
+w()
 
   ```
 </pre>
