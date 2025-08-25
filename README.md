@@ -328,29 +328,33 @@ La señal muestra una media de 0.2827 mV, lo que indica un valor bajo y consiste
 
 # **Parte C**
 ## **Relación señal ruido (SNR)** 
-Relaciona la señal de potencia del ruido deseado con la pontecia del ruido
+Es una medida que se usa mucho en ingeniería y comunicaciones que mide cuán fuerte es una señal útil en comparación con el ruido de fondo indeseado. Se define como la razón entre la potencia de la señal y la potencia del ruido. En la práctica, se expresa en decibelios (dB) para facilitar su interpretación en escalas logarítmicas:
+
+<img width="298" height="87" alt="image" src="https://github.com/user-attachments/assets/98ae6fd2-a644-47a6-a7b3-40daede580a3" />
+
+Cabe aclarar que un valor más alto de SNR indica una señal más clara y menos afectada por el ruido, lo que mejora la precisión en análisis de datos.
+
 ## **1. Contaminar la señal con ruido gaussiano y medir el SNR**
 
 <pre> ```
-import numpy as np
-import matplotlib.pyplot as plt
-
-def calcular_snr(signal, noisy_signal):
-    potencia_signal = np.mean(signal**2)
-    potencia_ruido = np.mean((noisy_signal - signal)**2)
-    return 10 * np.log10(potencia_signal / potencia_ruido)
-
-senal = df["data"].values
-tiempo = df["timeStamps"].values
-
-ruido_gauss = np.random.normal(0, 0.2, len(senal))  # media=0, sigma=0.2
-senal_gauss = senal + ruido_gauss
+def calcular_snr(signal, noisy_signal) 
+    potencia_signal = np.mean(signal**2) # Potencia de la señal original = promedio de la señal al cuadrado
+    potencia_ruido = np.mean((noisy_signal - signal)**2) # Potencia del ruido = promedio del error cuadrático entre señal ruidosa y origina
+    return 10 * np.log10(potencia_signal / potencia_ruido) # Fórmula del SNR en decibeles (dB)
+# Preparar la señal
+senal = df["data"].values        # Vector con los valores de la señal original (ECG)
+tiempo = df["timeStamps"].values # Vector con el eje de tiempo correspondiente
+# Generar ruido gaussiano
+ruido_gauss = np.random.normal(0, 0.2, len(senal))
+senal_gauss = senal + ruido_gauss # Señal ruidosa = señal original + ruido gaussiano
+# Calcular el SNR resultante
 snr_gauss = calcular_snr(senal, senal_gauss)
 print(f"(a) SNR con ruido gaussiano: {snr_gauss:.2f} dB")
-
+# Gráfica comparativa
 plt.figure(figsize=(12,4))
-plt.plot(tiempo, senal, label="Señal original", alpha=0.7)
-plt.plot(tiempo, senal_gauss, label="Señal con ruido gaussiano", alpha=0.7)
+plt.plot(tiempo, senal, label="Señal original", alpha=0.7)          # Señal limpia
+plt.plot(tiempo, senal_gauss, label="Señal con ruido gaussiano", 
+         alpha=0.7)                                                 # Señal contaminada
 plt.xlabel("Tiempo (s)")
 plt.ylabel("Voltaje (mV)")
 plt.title("Señal con ruido gaussiano")
@@ -368,17 +372,20 @@ En la grafica podemos apreciar que la señal ruidosa (la naranja) sigue de cerca
 ## **2. Contaminar la señal con ruido impulso y medir SNR**
 
 <pre> ```
-senal = df["data"].values
-tiempo = df["timeStamps"].values
+senal = df["data"].values 
+tiempo = df["timeStamps"].values 
 
 senal_impulso = senal.copy()
-num_impulsos = int(0.01 * len(senal))  # 1% de los puntos alterados
-posiciones = np.random.randint(0, len(senal), num_impulsos)
+num_impulsos = int(0.01 * len(senal))   # Número de impulsos = 1% de la longitud de la señal
+posiciones = np.random.randint(0, len(senal), num_impulsos)  # Posiciones aleatorias
+
+# En esas posiciones se agregan impulsos de +3 o -3 mV
 senal_impulso[posiciones] = senal_impulso[posiciones] + np.random.choice([3, -3], size=num_impulsos)
 
-snr_impulso = calcular_snr(senal, senal_impulso)
+snr_impulso = calcular_snr(senal, senal_impulso)  # Cálculo del SNR
 print(f"(b) SNR con ruido impulso: {snr_impulso:.2f} dB")
 
+# Gráfica comparativa
 plt.figure(figsize=(12,4))
 plt.plot(tiempo, senal, label="Señal original", alpha=0.7)
 plt.plot(tiempo, senal_impulso, label="Señal con ruido impulso", alpha=0.7)
@@ -402,15 +409,23 @@ El ruido de impulso (el naranja) es bastante parecido al original excepto por un
 <pre> ```
 senal = df["data"].values
 tiempo = df["timeStamps"].values
-fs = 500  # Frecuencia de muestreo aprox., cámbiala según tu archivo
+fs = 500  # Frecuencia de muestreo (ajustar según tu archivo)
 t = np.arange(len(senal)) / fs
+
+# Artefacto de baja frecuencia (deriva de línea base, 0.5 Hz)
 artefacto_baja = 0.5 * np.sin(2 * np.pi * 0.5 * t)
+
+# Artefacto de alta frecuencia (interferencia eléctrica, 60 Hz)
 artefacto_alta = 0.2 * np.sin(2 * np.pi * 60 * t)
+
+# Señal contaminada con ambos artefactos
 senal_artefacto = senal + artefacto_baja + artefacto_alta
 
+# Cálculo del SNR
 snr_artefacto = calcular_snr(senal, senal_artefacto)
 print(f"(c) SNR con ruido tipo artefacto: {snr_artefacto:.2f} dB")
 
+# Gráfica comparativa
 plt.figure(figsize=(12,4))
 plt.plot(tiempo, senal, label="Señal original", alpha=0.7)
 plt.plot(tiempo, senal_artefacto, label="Señal con artefacto", alpha=0.7)
@@ -420,6 +435,7 @@ plt.title("Señal con ruido tipo artefacto")
 plt.legend()
 plt.grid(True)
 plt.show()
+
  ```
 </pre>
 
