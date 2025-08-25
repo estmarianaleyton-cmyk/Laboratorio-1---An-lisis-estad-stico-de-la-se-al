@@ -1,4 +1,4 @@
-# Laboratorio 1 - Análisis de los estadísticos descriptivos de la señal
+ # Laboratorio 1 - Análisis de los estadísticos descriptivos de la señal
 
 **Universidad Militar Nueva Granada**
 
