@@ -113,15 +113,15 @@ plt.show()
   ```
 </pre>
 ## **Histograma**
-
+<img width="869" height="488" alt="image" src="https://github.com/user-attachments/assets/425c9013-f739-4132-a586-6d874b6e6511" />
 
 ## **Funcion de probabilidad**
 <img width="719" height="564" alt="image" src="https://github.com/user-attachments/assets/af8b9cf6-cd75-418b-8c4e-a01fcc3c4a60" />
 
 
 ## **Resultados de los estadísticos descriptivos de la señal**
-- *Media de la señal:* 0.0016
-- *Desviacion estandar de la señal:* 0.1390
+- *Media de la señal:* 0.0016 mV
+- *Desviacion estandar de la señal:* 0.1390 mV
 - *Coeficiente de variación:* 8778.00332
 - *Exceso de curtosis (Curtosis de Fisher):* 1.7190
 - *Curtosis (curtosis muestral no centrada en exceso):* 4.7190
@@ -167,8 +167,8 @@ plt.show()
 </pre>
 
 ## **Resultados de los estadísticos descriptivos de la señal**
-- *Media de la señal:* 0.0016
-- *Desviacion estandar de la señal:* 0.1390
+- *Media de la señal:* 0.0016 mV
+- *Desviacion estandar de la señal:* 0.1390 mV
 - *Coeficiente de variación:* 8778.00332
 - *Exceso de curtosis (Curtosis de Fisher):* 1.7190
 - *Curtosis (curtosis muestral no centrada en exceso):* 4.7190
@@ -180,7 +180,7 @@ plt.show()
 <img width="690" height="568" alt="image" src="https://github.com/user-attachments/assets/3b2103a2-68f5-4d55-9463-49f2aec8b406" />
 
 ## **Análisis de los resultados de la parte A**
-El análisis de la señal ECG de 15 segundos descargada de PhysioNet permitió caracterizar su comportamiento mediante la media (0.0016 mV) cercana a cero indica que la señal está  centrada en la línea base, mientras que la desviación estándar (0.1390 mV) refleja que la mayor parte de las muestras se concentran en torno al valor central, con variaciones propias del ECG. El coeficiente de variación, resulta elevado (≈8778 %), pierde relevancia práctica debido a que la media es muy baja y el cociente se ve amplificado. En cuanto a la curtosis, los valores obtenidos (4.7190 sin exceso y 1.7190 con exceso de Fisher)  que significa que predominan eventos transitorios de alta amplitud. Estos hallazgos se respaldan en el histograma y en la función de probabilidad, que evidencian una fuerte concentración de amplitudes alrededor de cero y menor frecuencia en valores extremos. En conjunto, los resultados confirman que la señal ECG es estable, con dispersión controlada.
+El análisis de la señal ECG de 15 segundos descargada de [PhysioNet](https://physionet.org/) nos permitió entender su comportamiento a través de la media, que es de 0.0016 mV, un valor muy cercano a cero. Esto sugiere que la señal está bien centrada en la línea base, sin desplazamientos significativos. Por otro lado, la desviación estándar es de 0.1390 mV, un número pequeño que indica que la mayoría de las muestras se agrupan alrededor de un valor medio. Esto tiene sentido, ya que los intervalos entre los picos de las ondas QRS, P y T son de baja amplitud en comparación con los picos de las ondas R. El coeficiente de variación es bastante alto, alcanzando 8778.00332, debido a que la media está tan cerca de cero, lo que provoca que el valor se dispare. En cuanto a la curtosis de Fisher, el valor obtenido es de 1.7190, lo que indica que la distribución es leptocúrtica. Esto significa que tiene colas más pesadas y picos más pronunciados que una distribución normal, gracias a las ondas R que presentan una amplitud más alta. Estos hallazgos se ven respaldados por el histograma y la función de probabilidad, que muestran una fuerte concentración de amplitudes alrededor de cero y una menor frecuencia en los valores extremos.
 
 # **Parte B**
 
@@ -259,8 +259,8 @@ plt.grid(True)
 </pre>
 
 ## **Resultados de los estadísticos descriptivos de la señal**
-- *Media de la señal:* 0.2827
-- *Desviacion estandar de la señal:* 0.1621
+- *Media de la señal:* 0.2827 mV
+- *Desviacion estandar de la señal:* 0.1621 mV
 - *Coeficiente de variación:* 57.3493
 - *Exceso de curtosis (Curtosis de Fisher):* 3.9548
 - *Curtosis (curtosis muestral no centrada en exceso):* 6.9548
@@ -310,8 +310,8 @@ plt.show()
 </pre>
 
 ## **Resultados de los estadísticos descriptivos de la señal**
-- *Media de la señal:* 0.2827
-- *Desviacion estandar de la señal:* 0.1621
+- *Media de la señal:* 0.2827 mV
+- *Desviacion estandar de la señal:* 0.1621 mV
 - *Coeficiente de variación:* 57.3493
 - *Exceso de curtosis (Curtosis de Fisher):* 3.9548
 - *Curtosis (curtosis muestral no centrada en exceso):* 6.9548
@@ -323,14 +323,15 @@ plt.show()
 <img width="764" height="563" alt="image" src="https://github.com/user-attachments/assets/5a13e3ca-a9b0-4290-a4e3-cbad29548e5d" />
 
 ## **Análisis de los resultados de la parte B**
-La señal adquirida mediante el DAQ se observaron cambios notorios, frente a la de PhysioNet. Ya que se adquirio directamente desde el osiloscopio, desde el cual se exporto a una memoria USB  para luego  procesarla en Pthon, al revisar los datos descargados se observo que se mostraba demasiado comprimida, lo que dificultaba su visualizacion y sus caracteristicas estadisticas, por eso fue necesario aplicar un factor de escala  (0.2x10^6=200.000), a partir de ese valor se normalizo su amplitud para asi obtener los datos. La medida de la señal tambien se mantuvo cercana a cero, lo que indica una buena adquisicion. La desviacion estandar resulto ser un poco mayor, reflejando mayor dispersion y variabilidad en los datos. 
-Los resultados obtenidsos muestran que la señal adquirirda comparten caracteristicas de estaditicas similares a la de la señal de referencia.
+La señal adquirida mediante el DAQ se observaron cambios notorios, frente a la de [PhysioNet](https://physionet.org/). Ya que se capturo directamente desde el osciloscopio, desde el cual se exporto a una memoria USB para luego procesarla en Python, al revisar los datos descargados se observó que se mostraba demasiado comprimida, lo que dificultaba su visualización y calcular sus estadísticos descriptivos, por eso fue necesario aplicar un factor de escala (0.2x10^6=200.000), a partir de ese valor se normalizo su amplitud para así obtener los datos.
+La señal muestra una media de 0.2827 mV, lo que indica un valor bajo y consistente con lo que esperaríamos de una señal fisiológica. Además, su desviación estándar de 0.1621 mV y un coeficiente de variación del 57.35 sugieren que hay una gran variabilidad en torno a la media, algo que se puede observar en las rápidas fluctuaciones y picos en la gráfica. Al analizar la curtosis, encontramos un exceso de 3.95 (curtosis muestral de 6.95), lo que revela una distribución leptocúrtica, caracterizada por una fuerte concentración de valores alrededor del promedio y la aparición más frecuente de picos extremos en comparación con una distribución normal. Esto se confirma en el histograma, donde la mayoría de los datos se agrupan entre 0.2 y 0.3 mV, aunque también hay valores atípicos en el rango de 0.7 a 0.8 mV y en la función de probabilidad muestra un comportamiento multimodal, con un primer pico entre 0.1 y 0.2 mV y un segundo aumento en las amplitudes más altas.
 
 # **Parte C**
-## **Relación señal ruido (SNR)** Relaciona la señal de potencia del ruido deseado con la pontecia del ruido
-**a. Contaminar la señal con ruido gaussiano y medir el SNR**
- ```
-</pre>
+## **Relación señal ruido (SNR)** 
+Relaciona la señal de potencia del ruido deseado con la pontecia del ruido
+## **1. Contaminar la señal con ruido gaussiano y medir el SNR**
+
+<pre> ```
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -358,12 +359,15 @@ plt.grid(True)
 plt.show()
  ```
 </pre>
+## **Señal con ruido gaussiano: 4.10 dB**
+<img width="1235" height="474" alt="image" src="https://github.com/user-attachments/assets/2b38f327-b0ba-488e-8acc-9ca1a59d581e" />
 
-<img width="1035" height="422" alt="image" src="https://github.com/user-attachments/assets/ed2eaadb-1b95-4a23-a425-25231ecdfb07" />
--En la grafica podemos apreciar que la señal ruidosa (la naranja) sigue de cerca a la original (la azul), el ruido gaussiano afecta en todo momento y por todo el rango, puesto que genera pequeñas variaciones continuas, el SNR es bastnate bajo lo que significa que la potencia de ruido es cercana a la señal, por eso se nota la distorsión.
+## **Análisis de la señal con ruido gaussiano**
+En la grafica podemos apreciar que la señal ruidosa (la naranja) sigue de cerca a la original (la azul), el ruido gaussiano afecta en todo momento y por todo el rango, puesto que genera pequeñas variaciones continuas, el SNR es bastnate bajo lo que significa que la potencia de ruido es cercana a la señal, por eso se nota la distorsión.
 
- ```
-</pre>
+## **2. Contaminar la señal con ruido impulso y medir SNR**
+
+<pre> ```
 senal = df["data"].values
 tiempo = df["timeStamps"].values
 
@@ -387,17 +391,19 @@ plt.show()
  ```
 </pre>
 
-**b. Contaminar la señal con ruido impulso y medir el SNR**
-<img width="1027" height="425" alt="image" src="https://github.com/user-attachments/assets/886522b3-eee3-42c3-a4b8-a826c9f93653" />
--El ruido de impulso (el naranja) es bastante parecido al original excepto por una parte que donde aparece un pico muy grande hacia abajo, sin embargo, esto es típico de este tipo de ruido. El SNR es extremadamente bajo, de 0.7dB, significa que esos impulsos tienen tanta energía que la potencia del ruido supera o iguala la de la señal.
+## **Señal con ruido impulso: 0.72 dB**
+<img width="1258" height="488" alt="image" src="https://github.com/user-attachments/assets/93f1c733-f7d3-44f4-9c5b-9c6533a4adb3" />
 
+## **Análisis de la señal con ruido impulso**
+El ruido de impulso (el naranja) es bastante parecido al original excepto por una parte que donde aparece un pico muy grande hacia abajo, sin embargo, esto es típico de este tipo de ruido. El SNR es extremadamente bajo, de 0.7dB, significa que esos impulsos tienen tanta energía que la potencia del ruido supera o iguala la de la señal.
+
+## **3. Contaminar la señal con ruido tipo artefacto y medir SNR**
+
+<pre> ```
 senal = df["data"].values
 tiempo = df["timeStamps"].values
 fs = 500  # Frecuencia de muestreo aprox., cámbiala según tu archivo
 t = np.arange(len(senal)) / fs
-
- ```
-</pre>
 artefacto_baja = 0.5 * np.sin(2 * np.pi * 0.5 * t)
 artefacto_alta = 0.2 * np.sin(2 * np.pi * 60 * t)
 senal_artefacto = senal + artefacto_baja + artefacto_alta
@@ -417,9 +423,12 @@ plt.show()
  ```
 </pre>
 
-**c. Contaminar la señal con ruido tipo artefacto y medir el SNR**
-<img width="1010" height="418" alt="image" src="https://github.com/user-attachments/assets/73e40d9f-9e6c-49f4-9b49-df3c436992a6" />
--La señal con el ruido tiene ondulaciones y picos que no corresponden a la señal original, aqui se mezclan interferencias sistematicas como una onda extra y el SNR es de 3.4dB lo cual es todavía bajo, indicando que los artefactos introducen una gran distorsión perceptible.
+## **Señal con ruido tipo artefacto: 3.41 dB**
+<img width="1250" height="483" alt="image" src="https://github.com/user-attachments/assets/4228a93c-d900-41fb-b00c-ebd526d410fe" />
 
+## **Análisis de la señal con ruido tipo artefacto**
+La señal con el ruido tiene ondulaciones y picos que no corresponden a la señal original, aqui se mezclan interferencias sistematicas como una onda extra y el SNR es de 3.4dB lo cual es todavía bajo, indicando que los artefactos introducen una gran distorsión perceptible.
+
+# **Referencias**
 
 
