@@ -236,26 +236,22 @@ plt.grid(True)
 plt.show()
 
   # Función de probabilidad discreta
-senal = df["data"]
-n = len(senal)
-valores_unicos = list(set(senal))
-probabilidades = []
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-for v in valores_unicos:
-frecuencia = sum(1 for x in senal if x == v)
-prob = frecuencia / n
-probabilidades.append((v, prob))
+senal = df["data"].values
 
-  
-valores = [v for v, _ in probabilidades]                    
-probs = [p for _, p in probabilidades]
+plt.figure(figsize=(15,4))
 
-plt.figure(figsize=(10,4))
-plt.bar(valores, probs, width=0.002, color="orange", edgecolor="black")
+# Subplot 1: Función de probabilidad con KDE
+plt.subplot(1,3,1)
+sns.kdeplot(senal, fill=False, color="orange")
 plt.xlabel("Valores de la señal (mV)")
-plt.ylabel("Probabilidad")
-plt.title("Función de probabilidad discreta de la señal fisiológica")
-plt.grid(True)
+plt.ylabel("Densidad de probabilidad")
+plt.title("Función de probabilidad de la señal fisiológica")
+plt.grid(True, linestyle="--", alpha=0.6)
+
   ```
 </pre>
 
@@ -270,7 +266,8 @@ plt.grid(True)
 <img width="856" height="493" alt="image" src="https://github.com/user-attachments/assets/dc3a4a28-41ae-4c5e-b370-d10646a496d1" />
 
 ## **Funcion de probabilidad**
-<img width="863" height="394" alt="download" src="https://github.com/user-attachments/assets/70112ae7-aef3-4584-9f14-750f5bcdd663" />
+<img width="430" height="387" alt="image" src="https://github.com/user-attachments/assets/9bb73bc7-5534-4286-9c34-2315422e3513" />
+
 
 
 ## **Estadísticos descriptivos de la señal fisiológica con funciones de Python**
@@ -447,3 +444,5 @@ plt.show()
 La señal con el ruido tiene ondulaciones y picos que no corresponden a la señal original, aqui se mezclan interferencias sistematicas como una onda extra y el SNR es de 3.4dB lo cual es todavía bajo, indicando que los artefactos introducen una gran distorsión perceptible.
 
 # **Referencias**
+
+Academia Lab. (2025). Relación señal-ruido. Enciclopedia. Revisado el 24 de agosto del 2025. https://academia-lab.com/enciclopedia/relacion-senal-ruido/
