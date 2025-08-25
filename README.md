@@ -1,4 +1,5 @@
 # Laboratorio 1 - Análisis de los estadísticos descriptivos de la señal
+
 **Universidad Militar Nueva Granada**
 
 **Asignatura:** Procesamiento Digital de Señales
@@ -7,7 +8,7 @@
 
 **Fecha:** 22 de agosto de 2025
 
-**Título de la practica:** Estadística de la señal
+**Título de la práctica:** Estadística de la señal
 
 # **Objetivos**
 - Identificar los estadísticos que describen una señal biomédica.
@@ -446,5 +447,3 @@ plt.show()
 La señal con el ruido tiene ondulaciones y picos que no corresponden a la señal original, aqui se mezclan interferencias sistematicas como una onda extra y el SNR es de 3.4dB lo cual es todavía bajo, indicando que los artefactos introducen una gran distorsión perceptible.
 
 # **Referencias**
-
-
