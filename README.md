@@ -194,7 +194,7 @@ uploaded = files.upload()                        # Subir los archivos a colab
 df = pd.read_csv("laboratorio_datos.csv")        # Se guarda en un DataFrame de Pandas
   # Gráfica
 tiempo = df.iloc[:,0].values                     # Se toma la primera columna y se guarda como vector tiempo
-canal2 = df.iloc[:,0].values                     # Se toman los datos de la segunda columna y se guarda como vector canal2
+canal2 = df.iloc[:,1].values                     # Se toman los datos de la segunda columna y se guarda como vector canal2
 plt.figure(figsize=(10, 4))
 plt.plot(df["timeStamps"], df["data"], label = "ECG")
 plt.xlabel("Tiempo (s)")
@@ -446,3 +446,5 @@ La señal con el ruido tiene ondulaciones y picos que no corresponden a la seña
 # **Referencias**
 
 Academia Lab. (2025). Relación señal-ruido. Enciclopedia. Revisado el 24 de agosto del 2025. https://academia-lab.com/enciclopedia/relacion-senal-ruido/
+
+# **Diagramas de flujo**
