@@ -448,10 +448,11 @@ La señal con el ruido tiene ondulaciones y picos que no corresponden a la seña
 Academia Lab. (2025). Relación señal-ruido. Enciclopedia. Revisado el 24 de agosto del 2025. https://academia-lab.com/enciclopedia/relacion-senal-ruido/
 
 # **Diagramas de flujo**
+
 ## **Parte A**
-<img width="1908" height="3845" alt="Parte A" src="https://github.com/user-attachments/assets/816049cf-9412-46c8-961f-a9afb74f3336" />
+<img width="2227" height="3845" alt="Parte A" src="https://github.com/user-attachments/assets/7d2eaf10-55d5-48f2-81f1-aa2d8546a40b" />
 
 ## **Parte B**
-<img width="1548" height="4120" alt="Parte B" src="https://github.com/user-attachments/assets/86a42f08-12d1-4360-a198-1563e32f6f3d" />
+<img width="1968" height="4120" alt="Parte B" src="https://github.com/user-attachments/assets/1858d028-1285-475b-b031-421be16d2952" />
 
 ## **Parte C**
