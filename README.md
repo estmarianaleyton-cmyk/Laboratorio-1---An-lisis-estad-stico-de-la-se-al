@@ -449,7 +449,7 @@ Academia Lab. (2025). Relación señal-ruido. Enciclopedia. Revisado el 24 de ag
 
 # **Diagramas de flujo**
 ## **Parte A**
-<img width="344" height="599" alt="image" src="https://github.com/user-attachments/assets/9582bce6-3f7f-43f0-be7c-3267f16ae3f5" />
+
 
 ## **Parte B**
 
