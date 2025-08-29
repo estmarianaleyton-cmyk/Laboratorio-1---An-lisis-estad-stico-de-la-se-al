@@ -456,3 +456,5 @@ Academia Lab. (2025). Relación señal-ruido. Enciclopedia. Revisado el 24 de ag
 <img width="1968" height="4120" alt="Parte B" src="https://github.com/user-attachments/assets/1858d028-1285-475b-b031-421be16d2952" />
 
 ## **Parte C**
+![Parte C](https://github.com/user-attachments/assets/4aa9266b-4654-4aec-9881-e64685d696d1)
+
